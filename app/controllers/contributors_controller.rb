@@ -9,14 +9,12 @@ class ContributorsController < ApplicationController
   end
 
   def show
-    @contributors = HTTParty.get("https://api.github.com/repos/rails/rails/contributors")
-
     respond_to do |format|
       format.html
       
       format.pdf do
         pdf = Prawn::Document.new
-        pdf.text "PDF ##{(params[:id].to_i + 1)}"
+        pdf.text "PDF ##{params[:id]}"
         pdf.text "The award go to: #{params[:login]}!"
         send_data pdf.render,
           type: 'application/pdf',

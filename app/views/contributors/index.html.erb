@@ -6,7 +6,12 @@
 <h3>Results:</h3>
 <ul>
   <% (0..2).each do |i| %>
-    <li><%= @contributors[i]["login"] %></li>
-    <%= link_to('PDF', contributor_path(format: :pdf, login: @contributors[i]["login"], id: i)) %>
+    <li>
+      <%= 
+        link_to("#{@contributors[i]["login"]}", 
+        contributor_path(format: :pdf, login: @contributors[i]["login"], 
+        id: (i + 1))) 
+      %>
+    </li>
   <% end %>
 </ul>
