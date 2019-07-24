@@ -7,4 +7,21 @@ class ContributorsController < ApplicationController
       @contributors = HTTParty.get("https://api.github.com/repos#{path}/contributors")
     end
   end
+
+  def show
+    @contributors = HTTParty.get("https://api.github.com/repos/rails/rails/contributors")
+
+    respond_to do |format|
+      format.html
+      
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "The award go to #{params[:login]}!"
+        send_data pdf.render,
+          type: 'application/pdf',
+          disposition: 'inline'
+          # disposition: 'attachment'
+      end
+    end
+  end
 end
