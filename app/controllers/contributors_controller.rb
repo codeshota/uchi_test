@@ -16,7 +16,8 @@ class ContributorsController < ApplicationController
       
       format.pdf do
         pdf = Prawn::Document.new
-        pdf.text "The award go to #{params[:login]}!"
+        pdf.text "PDF ##{(params[:id].to_i + 1)}"
+        pdf.text "The award go to: #{params[:login]}!"
         send_data pdf.render,
           type: 'application/pdf',
           disposition: 'inline'
