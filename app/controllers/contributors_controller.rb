@@ -18,8 +18,8 @@ class ContributorsController < ApplicationController
         pdf.text "The award go to: #{params[:login]}!"
         send_data pdf.render,
           type: 'application/pdf',
-          disposition: 'inline'
-          # disposition: 'attachment'
+          # disposition: 'inline'
+          disposition: 'attachment'
       end
     end
   end

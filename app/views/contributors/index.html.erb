@@ -4,12 +4,13 @@
 <% end %>
 
 <h3>Results:</h3>
-<ul>
+<table>
   <% (0..2).each do |i| %>
-    <li>
-      <%= link_to("#{@contributors[i]["login"]}", 
+    <tr>
+      <td><%= @contributors[i]["login"] %></td>
+      <td><%= link_to("download pdf", 
           contributor_path(format: :pdf, login: @contributors[i]["login"], 
-          id: (i + 1))) %>
-    </li>
+          id: (i + 1))) %></td>
+    </tr> 
   <% end %>
-</ul>
+</table>
